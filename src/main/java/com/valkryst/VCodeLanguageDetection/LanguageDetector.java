@@ -80,6 +80,13 @@ public class LanguageDetector {
         return score / tokens.length;
     }
 
+    /**
+     * Loads the keywords from the keywords folder, within the JAR.
+     *
+     * @return The map of languages and their keywords.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
     private HashMap<String, String[]> loadKeywords() throws IOException {
         final var fileNames = new String[] {
             "C", "Clojure", "CPlusPlus", "CSharp",
