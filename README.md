@@ -145,3 +145,4 @@ private String detectSyntaxStyle(final @NonNull String code) {
 * PHP
 * Python
 * Ruby
+* SQL

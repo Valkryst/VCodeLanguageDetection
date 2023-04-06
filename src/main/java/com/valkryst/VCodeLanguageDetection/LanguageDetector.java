@@ -29,7 +29,8 @@ public class LanguageDetector {
         new Perl(),
         new PHP(),
         new Python(),
-        new Ruby()
+        new Ruby(),
+        new SQL()
     };
 
     /** The singleton instance. */
@@ -52,6 +53,7 @@ public class LanguageDetector {
 
         code = stripQuotedStrings(code);
         code = stripNonAlphanumericCharacters(code);
+        code = code.toLowerCase();
 
         float bestScore = 0;
         Language bestMatch = null;
