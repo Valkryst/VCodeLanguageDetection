@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class LanguageDetector {
     /** Pre-compiled regex pattern to remove non-alphanumeric characters, while allowing a few symbols. */
-    private final Pattern NON_ALPHANUMERIC_PATTERN = Pattern.compile("[^a-zA-Z0-9_\\->*|<=?!]"); // todo Check that this excludes underscores.
+    private final Pattern NON_ALPHANUMERIC_PATTERN = Pattern.compile("[^a-zA-Z0-9_\\->*|<=?!]");
 
     /** Pre-compiled regex pattern to remove quoted strings. */
     private final Pattern QUOTED_STRINGS_PATTERN = Pattern.compile("(\"[^\"]*\")|('[^']*')");
