@@ -130,6 +130,7 @@ private String detectSyntaxStyle(final @NonNull String code) {
 * C++
 * C#
 * Clojure
+* D
 * Java
 * JavaScript
 * Perl
