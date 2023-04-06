@@ -1,5 +1,10 @@
 package com.valkryst.VCodeLanguageDetection.language;
 
+/**
+ * Represents the Clojure programming language.
+ *
+ * Aliases and Keywords were taken from {@code highlight.js/src/languages/clojure.js}.
+ */
 public class Clojure extends Language {
     private static final String[] KEYWORDS = {
         "*|0",

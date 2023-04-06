@@ -1,5 +1,10 @@
 package com.valkryst.VCodeLanguageDetection.language;
 
+/**
+ * Represents the C++ programming language.
+ *
+ * Aliases and Keywords were taken from {@code highlight.js/src/languages/cpp.js}.
+ */
 public class CPlusPlus extends Language {
     private static final String[] KEYWORDS = {
         // Reserved Keywords

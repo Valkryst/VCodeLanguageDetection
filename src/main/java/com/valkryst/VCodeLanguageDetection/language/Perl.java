@@ -1,5 +1,10 @@
 package com.valkryst.VCodeLanguageDetection.language;
 
+/**
+ * Represents the Perl programming language.
+ *
+ * Aliases and Keywords were taken from {@code highlight.js/src/languages/perl.js}.
+ */
 public class Perl extends Language {
     private static final String[] KEYWORDS = {
         "abs",

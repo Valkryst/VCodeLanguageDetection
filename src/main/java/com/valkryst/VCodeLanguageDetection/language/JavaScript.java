@@ -1,5 +1,10 @@
 package com.valkryst.VCodeLanguageDetection.language;
 
+/**
+ * Represents the JavaScript programming language.
+ *
+ * Aliases and Keywords were taken from {@code highlight.js/src/languages/lib/ecmascript.js}.
+ */
 public class JavaScript extends Language {
     private static final String[] KEYWORDS = {
         // Main Keywords

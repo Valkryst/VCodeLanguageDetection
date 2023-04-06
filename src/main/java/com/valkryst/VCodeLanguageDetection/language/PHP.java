@@ -1,5 +1,10 @@
 package com.valkryst.VCodeLanguageDetection.language;
 
+/**
+ * Represents the PHP programming language.
+ *
+ * Aliases and Keywords were taken from {@code highlight.js/src/languages/php.js}.
+ */
 public class PHP extends Language {
     private static final String[] KEYWORDS = {
         // Main Keywords
