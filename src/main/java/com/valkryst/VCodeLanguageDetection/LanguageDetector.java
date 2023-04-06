@@ -1,9 +1,6 @@
 package com.valkryst.VCodeLanguageDetection;
 
-import com.valkryst.VCodeLanguageDetection.language.C;
-import com.valkryst.VCodeLanguageDetection.language.Java;
-import com.valkryst.VCodeLanguageDetection.language.Language;
-import com.valkryst.VCodeLanguageDetection.language.Python;
+import com.valkryst.VCodeLanguageDetection.language.*;
 
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -19,6 +16,7 @@ public class LanguageDetector {
     private static final Language[] LANGUAGES = {
         new C(),
         new Java(),
+        new JavaScript(),
         new Python()
     };
 
