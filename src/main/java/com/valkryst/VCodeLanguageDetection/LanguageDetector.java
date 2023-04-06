@@ -6,8 +6,8 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class LanguageDetector {
-    /** Pre-compiled regex pattern to remove non-alphanumeric characters. */
-    private final Pattern NON_ALPHANUMERIC_PATTERN = Pattern.compile("[^a-zA-Z0-9]"); // todo Check that this excludes underscores.
+    /** Pre-compiled regex pattern to remove non-alphanumeric characters, while allowing a few symbols. */
+    private final Pattern NON_ALPHANUMERIC_PATTERN = Pattern.compile("[^a-zA-Z0-9_\\->*|<=?!]"); // todo Check that this excludes underscores.
 
     /** Pre-compiled regex pattern to remove quoted strings. */
     private final Pattern QUOTED_STRINGS_PATTERN = Pattern.compile("(\"[^\"]*\")|('[^']*')");
@@ -15,9 +15,11 @@ public class LanguageDetector {
     /** The list of supported languages. */
     private static final Language[] LANGUAGES = {
         new C(),
+        new Clojure(),
         new Java(),
         new JavaScript(),
         new Perl(),
+        new PHP(),
         new Python()
     };
 
