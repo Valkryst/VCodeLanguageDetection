@@ -1,5 +1,5 @@
 This is a lightweight library that allows users to automatically detect the coding language of an
-input text. The library is based off of [highlight.js](https://github.com/highlightjs/highlight.js)' language detection.
+input text.
 
 The current implementation is far from perfect, and will sometimes misidentify the language of a code snippet. Longer
 code snippets are more likely to be correctly identified.
@@ -12,6 +12,7 @@ code snippets are more likely to be correctly identified.
     * [sbt](https://github.com/Valkryst/VCodeLanguageDetection#-scala-sbt)
 * [Usage](https://github.com/Valkryst/VCodeLanguageDetection#usage)
 * [Supported Languages](https://github.com/Valkryst/VCodeLanguageDetection#supported-languages)
+* [Credits & Inspiration](https://github.com/Valkryst/VCodeLanguageDetection#credits--inspiration)
 
 ## Installation
 
@@ -146,3 +147,7 @@ private String detectSyntaxStyle(final @NonNull String code) {
 * Python
 * Ruby
 * SQL
+
+# Credits & Inspiration
+
+* [highlight.js](https://github.com/highlightjs/highlight.js) - For the lists of keywords for each language.
