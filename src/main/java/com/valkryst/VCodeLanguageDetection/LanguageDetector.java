@@ -11,12 +11,6 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class LanguageDetector {
-    /** Pre-compiled regex pattern to remove non-alphanumeric characters, while allowing a few symbols. */
-    private final Pattern NON_ALPHANUMERIC_PATTERN = Pattern.compile("[^a-zA-Z0-9_\\->*|<=?!]");
-
-    /** Pre-compiled regex pattern to remove quoted strings. */
-    private final Pattern QUOTED_STRINGS_PATTERN = Pattern.compile("(\"[^\"]*\")|('[^']*')");
-
     /** The singleton instance. */
     private static LanguageDetector instance;
 
@@ -44,8 +38,8 @@ public class LanguageDetector {
             return Optional.empty();
         }
 
-        code = stripQuotedStrings(code);
-        code = stripNonAlphanumericCharacters(code);
+        code = CodeFilter.filterBraces(code);
+        code = CodeFilter.filterSymbols(code);
         code = code.toLowerCase();
 
         float bestScore = 0;
@@ -126,28 +120,6 @@ public class LanguageDetector {
         }
 
         return keywordsMap;
-    }
-
-    /**
-     * Strips all non-alphanumeric characters from the string.
-     *
-     * @param s The string to strip.
-     *
-     * @return The stripped string.
-     */
-    private String stripNonAlphanumericCharacters(final String s) {
-        return NON_ALPHANUMERIC_PATTERN.matcher(s).replaceAll(" ");
-    }
-
-    /**
-     * Strips all quoted strings from the string.
-     *
-     * @param s The string to strip.
-     *
-     * @return The stripped string.
-     */
-    private String stripQuotedStrings(final String s) {
-        return QUOTED_STRINGS_PATTERN.matcher(s).replaceAll("");
     }
 
     /**
