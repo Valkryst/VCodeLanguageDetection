@@ -1,7 +1,12 @@
 package com.valkryst.VCodeLanguageDetection;
 
-import com.valkryst.VCodeLanguageDetection.language.*;
+import lombok.SneakyThrows;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -12,32 +17,20 @@ public class LanguageDetector {
     /** Pre-compiled regex pattern to remove quoted strings. */
     private final Pattern QUOTED_STRINGS_PATTERN = Pattern.compile("(\"[^\"]*\")|('[^']*')");
 
-    /** The list of supported languages. */
-    private static final Language[] LANGUAGES = {
-        new C(),
-        new Clojure(),
-        new CPlusPlus(),
-        new CSharp(),
-        new D(),
-        new Dart(),
-        new Delphi(),
-        new Fortran(),
-        new Go(),
-        new Java(),
-        new JavaScript(),
-        new Lua(),
-        new Perl(),
-        new PHP(),
-        new Python(),
-        new Ruby(),
-        new SQL()
-    };
-
     /** The singleton instance. */
     private static LanguageDetector instance;
 
-    /** Private constructor to prevent instantiation. */
-    private LanguageDetector() {}
+    /** The map of languages and their keywords. */
+    private final HashMap<String, String[]> keywordsMap;
+
+    /**
+     * Private constructor to prevent instantiation.
+     *
+     * @throws IOException If an I/O error occurs.
+     */
+    private LanguageDetector() throws IOException {
+        keywordsMap = loadKeywords();
+    }
 
     /**
      * Detects the language of the code.
@@ -46,7 +39,7 @@ public class LanguageDetector {
      *
      * @return The detected language, or an empty optional if the language could not be detected.
      */
-    public Optional<Language> detect(String code) {
+    public Optional<String> detect(String code) {
         if (code == null || code.isEmpty()) {
             return Optional.empty();
         }
@@ -56,10 +49,10 @@ public class LanguageDetector {
         code = code.toLowerCase();
 
         float bestScore = 0;
-        Language bestMatch = null;
+        String bestMatch = null;
 
-        for (final var language : LANGUAGES) {
-            float score = matchScore(code, language);
+        for (final var language : keywordsMap.keySet()) {
+            float score = matchScore(code, keywordsMap.get(language));
 
             if (score > bestScore) {
                 bestScore = score;
@@ -74,14 +67,16 @@ public class LanguageDetector {
      * Calculates the match score for the code and language.
      *
      * @param code The code to match.
-     * @param language The language to match.
+     * @param keywords The keywords to match.
      * @return The match score.
      */
-    private float matchScore(final String code, final Language language) {
+    private float matchScore(final String code, final String[] keywords) {
         final var tokens = code.split("\\s+");
         float score = 0;
 
-        for (final var keyword : language.getKeywords()) {
+        for (final var keyword : keywords) {
+            // todo Ensure all tokens are lowercased, preferably where they're defined,
+            // todo to potentially improve detection results.
             for (final var token : tokens) {
                 if (token.equals(keyword)) {
                     score += 1.0;
@@ -91,6 +86,46 @@ public class LanguageDetector {
 
         // normalize score by length of tokens
         return score / tokens.length;
+    }
+
+    private HashMap<String, String[]> loadKeywords() throws IOException {
+        final var fileNames = new String[] {
+            "C", "Clojure", "CPlusPlus", "CSharp",
+            "D", "Dart", "Delphi",
+            "Fortran",
+            "Go",
+            "Java", "JavaScript",
+            "Lua",
+            "Perl", "PHP", "Python",
+            "Ruby",
+            "SQL"
+        };
+
+        final var keywordsMap = new HashMap<String, String[]>();
+
+        for (final var fileName : fileNames) {
+            final var inputStream = LanguageDetector.class.getResourceAsStream("/keywords/" + fileName);
+            if (inputStream == null) {
+                continue;
+            }
+
+            try (
+                final var inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+                final var bufferedReader = new BufferedReader(inputStreamReader);
+            ) {
+                final var keywords = bufferedReader.lines()
+                        .map(String::trim)
+                        .map(String::toLowerCase)
+                        .filter(line -> !line.isEmpty())
+                        .filter(line -> !line.startsWith("//"));
+
+                keywordsMap.put(fileName, keywords.toArray(String[]::new));
+            } finally {
+                inputStream.close();
+            }
+        }
+
+        return keywordsMap;
     }
 
     /**
@@ -120,6 +155,7 @@ public class LanguageDetector {
      *
      * @return The singleton instance.
      */
+    @SneakyThrows
     public static LanguageDetector getInstance() {
         if (instance == null) {
             instance = new LanguageDetector();
