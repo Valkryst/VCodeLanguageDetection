@@ -69,8 +69,6 @@ public class LanguageDetector {
         float score = 0;
 
         for (final var keyword : keywords) {
-            // todo Ensure all tokens are lowercased, preferably where they're defined,
-            // todo to potentially improve detection results.
             for (final var token : tokens) {
                 if (token.equals(keyword)) {
                     score += 1.0;
