@@ -71,7 +71,7 @@ resolvers += "jitpack" at "https://jitpack.io"
 Add _VCodeLanguageDetection_ as a dependency.
 
 ```
-libraryDependencies += "com.github.Valkryst" % "VCodeLanguageDetection" % "2022.12.23"
+libraryDependencies += "com.github.Valkryst" % "VCodeLanguageDetection" % "1.0.0"
 ```
 
 ## Usage
