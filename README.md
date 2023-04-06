@@ -144,3 +144,4 @@ private String detectSyntaxStyle(final @NonNull String code) {
 * Perl
 * PHP
 * Python
+* Ruby

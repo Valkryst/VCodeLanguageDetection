@@ -28,7 +28,8 @@ public class LanguageDetector {
         new Lua(),
         new Perl(),
         new PHP(),
-        new Python()
+        new Python(),
+        new Ruby()
     };
 
     /** The singleton instance. */
