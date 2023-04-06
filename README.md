@@ -140,6 +140,7 @@ private String detectSyntaxStyle(final @NonNull String code) {
 * Go
 * Java
 * JavaScript
+* Lua
 * Perl
 * PHP
 * Python

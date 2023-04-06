@@ -25,6 +25,7 @@ public class LanguageDetector {
         new Go(),
         new Java(),
         new JavaScript(),
+        new Lua(),
         new Perl(),
         new PHP(),
         new Python()
