@@ -16,6 +16,7 @@ public class LanguageDetector {
     private static final Language[] LANGUAGES = {
         new C(),
         new Clojure(),
+        new CPlusPlus(),
         new Java(),
         new JavaScript(),
         new Perl(),

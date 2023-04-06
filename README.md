@@ -127,6 +127,7 @@ private String detectSyntaxStyle(final @NonNull String code) {
 ## Supported Languages
 
 * C
+* C++
 * Clojure
 * Java
 * JavaScript
