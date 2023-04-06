@@ -99,7 +99,7 @@ public class Example {
     final var language = detector.detect(code);
 
     if (language.isPresent()) {
-      System.out.println(language.get().getName());
+      System.out.println(language.get());
     } else {
       System.out.println("No language detected.");
     }
@@ -119,7 +119,7 @@ private String detectSyntaxStyle(final @NonNull String code) {
     }
 
     try {
-        final var styleName = "SYNTAX_STYLE_" + language.get().getName().toUpperCase();
+        final var styleName = "SYNTAX_STYLE_" + language.get().toUpperCase();
         final var field = SyntaxConstants.class.getDeclaredField(styleName);
         return (String) field.get(null);
     } catch (final NoSuchFieldException | IllegalAccessException e) {
