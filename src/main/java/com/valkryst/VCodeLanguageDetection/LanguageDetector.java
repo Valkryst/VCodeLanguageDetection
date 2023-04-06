@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 public class LanguageDetector {
     /** The singleton instance. */
@@ -17,6 +16,9 @@ public class LanguageDetector {
     /** The map of languages and their keywords. */
     private final HashMap<String, String[]> keywordsMap;
 
+    /** The map of keywords and their uniqueness. */
+    private final HashMap<String, Double> keywordUniqueness = new HashMap<>();
+
     /**
      * Private constructor to prevent instantiation.
      *
@@ -24,6 +26,27 @@ public class LanguageDetector {
      */
     private LanguageDetector() throws IOException {
         keywordsMap = loadKeywords();
+
+        // Calculate the uniqueness of each keyword.
+        for (final var language : keywordsMap.keySet()) {
+            for (final var keyword : keywordsMap.get(language)) {
+                int occurrences = 1;
+
+                for (final var otherLanguage : keywordsMap.keySet()) {
+                    if (otherLanguage.equals(language)) {
+                        continue;
+                    }
+
+                    for (final var otherKeyword : keywordsMap.get(otherLanguage)) {
+                        if (otherKeyword.equals(keyword)) {
+                            occurrences++;
+                        }
+                    }
+                }
+
+                keywordUniqueness.put(keyword, 1.0 / occurrences);
+            }
+        }
     }
 
     /**
@@ -71,13 +94,12 @@ public class LanguageDetector {
         for (final var keyword : keywords) {
             for (final var token : tokens) {
                 if (token.equals(keyword)) {
-                    score += 1.0;
+                    score += keywordUniqueness.get(keyword);
                 }
             }
         }
 
-        // normalize score by length of tokens
-        return score / tokens.length;
+        return score;
     }
 
     /**
