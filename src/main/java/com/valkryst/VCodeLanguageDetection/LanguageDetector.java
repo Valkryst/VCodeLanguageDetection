@@ -22,6 +22,7 @@ public class LanguageDetector {
         new Dart(),
         new Delphi(),
         new Fortran(),
+        new Go(),
         new Java(),
         new JavaScript(),
         new Perl(),
