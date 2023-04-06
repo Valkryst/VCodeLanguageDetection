@@ -129,4 +129,5 @@ private String detectSyntaxStyle(final @NonNull String code) {
 * C
 * Java
 * JavaScript
+* Perl
 * Python

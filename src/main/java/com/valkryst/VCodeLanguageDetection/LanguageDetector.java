@@ -17,6 +17,7 @@ public class LanguageDetector {
         new C(),
         new Java(),
         new JavaScript(),
+        new Perl(),
         new Python()
     };
 
