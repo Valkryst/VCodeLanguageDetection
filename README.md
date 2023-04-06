@@ -103,6 +103,27 @@ public class Example {
 }
 ```
 
+If you're using [RSyntaxTextArea](https://github.com/bobbylight/RSyntaxTextArea), you can use the following method to
+detect the language and return the appropriate syntax style.
+
+```java 
+private String detectSyntaxStyle(final @NonNull String code) {
+    final var language = LanguageDetector.getInstance().detect(code);
+
+    if (language.isEmpty()) {
+        return RSyntaxTextArea.SYNTAX_STYLE_NONE;
+    }
+
+    try {
+        final var styleName = "SYNTAX_STYLE_" + language.get().getName().toUpperCase();
+        final var field = SyntaxConstants.class.getDeclaredField(styleName);
+        return (String) field.get(null);
+    } catch (final NoSuchFieldException | IllegalAccessException e) {
+        return RSyntaxTextArea.SYNTAX_STYLE_NONE;
+    }
+}
+```
+
 ## Supported Languages
 
 * C
