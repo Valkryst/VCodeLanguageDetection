@@ -13,7 +13,7 @@ input text. The library is based off of [highlight.js](https://github.com/highli
 ## Installation
 
 _VCodeLanguageDetection_ is hosted on the
-[JitPack package repository](https://jitpack.io/#Valkryst/Valkryst/VCodeLanguageDetection) which supports Gradle, Maven,
+[JitPack package repository](https://jitpack.io/#Valkryst/VCodeLanguageDetection) which supports Gradle, Maven,
 and sbt.
 
 ### ![Gradle](https://i.imgur.com/qtc6bXq.png?1) Gradle
