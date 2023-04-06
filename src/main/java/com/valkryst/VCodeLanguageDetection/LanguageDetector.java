@@ -19,6 +19,7 @@ public class LanguageDetector {
         new CPlusPlus(),
         new CSharp(),
         new D(),
+        new Dart(),
         new Java(),
         new JavaScript(),
         new Perl(),

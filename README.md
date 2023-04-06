@@ -131,6 +131,7 @@ private String detectSyntaxStyle(final @NonNull String code) {
 * C#
 * Clojure
 * D
+* Dart
 * Java
 * JavaScript
 * Perl
