@@ -128,6 +128,7 @@ private String detectSyntaxStyle(final @NonNull String code) {
 
 * C
 * C++
+* C#
 * Clojure
 * Java
 * JavaScript

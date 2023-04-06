@@ -17,6 +17,7 @@ public class LanguageDetector {
         new C(),
         new Clojure(),
         new CPlusPlus(),
+        new CSharp(),
         new Java(),
         new JavaScript(),
         new Perl(),
