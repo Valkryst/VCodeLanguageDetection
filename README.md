@@ -135,6 +135,7 @@ private String detectSyntaxStyle(final @NonNull String code) {
 * Clojure
 * D
 * Dart
+* Delphi
 * Java
 * JavaScript
 * Perl

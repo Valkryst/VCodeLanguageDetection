@@ -20,6 +20,7 @@ public class LanguageDetector {
         new CSharp(),
         new D(),
         new Dart(),
+        new Delphi(),
         new Java(),
         new JavaScript(),
         new Perl(),
