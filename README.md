@@ -1,6 +1,9 @@
 This is a lightweight library that allows users to automatically detect the coding language of an
 input text. The library is based off of [highlight.js](https://github.com/highlightjs/highlight.js)' language detection.
 
+The current implementation is far from perfect, and will sometimes misidentify the language of a code snippet. Longer
+code snippets are more likely to be correctly identified.
+
 ## Table of Contents
 
 * [Installation](https://github.com/Valkryst/VCodeLanguageDetection#installation)
