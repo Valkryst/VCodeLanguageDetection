@@ -62,6 +62,7 @@ public class LanguageDetector {
         }
 
         code = CodeFilter.filterBraces(code);
+        code = CodeFilter.filterQuotedStrings(code);
         code = CodeFilter.filterSymbols(code);
         code = code.toLowerCase();
 
