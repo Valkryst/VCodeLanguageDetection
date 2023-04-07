@@ -281,7 +281,6 @@ json_table
 json_table_primitive
 json_value
 lag
-language
 large
 last_value
 lateral
