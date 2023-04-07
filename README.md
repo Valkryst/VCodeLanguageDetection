@@ -87,12 +87,11 @@ to detect.
 public class Example {
   public static void main(final String[] args) {
     final var code = """
-      #include <stdio.h>
-              
-      int main() {
-          printf("Hello World");
-          return 0;
-      }
+    public class Example {
+        public static void main(final String[] args) {
+            System.out.println("Hello, World!");
+        }
+    }
     """;
 
     final var detector = LanguageDetector.getInstance();
