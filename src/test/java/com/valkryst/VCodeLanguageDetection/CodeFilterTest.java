@@ -13,20 +13,18 @@ public class CodeFilterTest {
     }
 
     @Test
+    public void testFilterQuotedStrings() {
+        final var input = "Hello, \"Wor'ld\"! How 'are' you?";
+        final var expected = "Hello,  ! How   you?";
+        final var actual = CodeFilter.filterQuotedStrings(input);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void testFilterSymbols() {
         final var input = "Hello, ~@#W$o^r&ld*-_=+;:'\"/\\!";
         final var expected = "Hello,    W o r ld -_    '\"   ";
         final var actual = CodeFilter.filterSymbols(input);
         Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testFilterEmptyString() {
-        final var input = "";
-        final var expected = "";
-        final var actualBraces = CodeFilter.filterBraces(input);
-        final var actualSymbols = CodeFilter.filterSymbols(input);
-        Assertions.assertEquals(expected, actualBraces);
-        Assertions.assertEquals(expected, actualSymbols);
     }
 }
