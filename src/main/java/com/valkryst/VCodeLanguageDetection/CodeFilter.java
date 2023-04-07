@@ -53,7 +53,6 @@ public class CodeFilter {
                 .replace(';', ' ')
                 .replace(':', ' ')
                 .replace('\\', ' ')
-                .replace('/', ' ')
-                .replace('.', ' ');
+                .replace('/', ' ');
     }
 }
