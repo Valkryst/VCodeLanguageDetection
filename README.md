@@ -87,20 +87,19 @@ to detect.
 public class Example {
   public static void main(final String[] args) {
     final var code = """
-    public class Example {
-        public static void main(final String[] args) {
-            System.out.println("Hello, World!");
-        }
-    }
-    """;
+            public class Example {
+                public static void main(final String[] args) {
+                    System.out.println("Hello, World!");
+                }
+            }
+            """;
 
     final var detector = LanguageDetector.getInstance();
     final var language = detector.detect(code);
 
-    if (language.isPresent()) {
-      System.out.println(language.get());
-    } else {
-      System.out.println("No language detected.");
+    System.out.println("Probabilities:");
+    for (final var entry : language.entrySet()) {
+      System.out.println("\t" + entry.getKey() + ": " + entry.getValue());
     }
   }
 }
@@ -111,19 +110,20 @@ detect the language and return the appropriate syntax style.
 
 ```java 
 private String detectSyntaxStyle(final @NonNull String code) {
-    final var language = LanguageDetector.getInstance().detect(code);
+  final var languages = LanguageDetector.getInstance().detect(code);
+  final var entry = languages.entrySet().iterator().next();
 
-    if (language.isEmpty()) {
-        return RSyntaxTextArea.SYNTAX_STYLE_NONE;
-    }
+  if (entry.getValue() == 0) {
+    return RSyntaxTextArea.SYNTAX_STYLE_NONE;
+  }
 
-    try {
-        final var styleName = "SYNTAX_STYLE_" + language.get().toUpperCase();
-        final var field = SyntaxConstants.class.getDeclaredField(styleName);
-        return (String) field.get(null);
-    } catch (final NoSuchFieldException | IllegalAccessException e) {
-        return RSyntaxTextArea.SYNTAX_STYLE_NONE;
-    }
+  try {
+    final var styleName = "SYNTAX_STYLE_" + entry.getKey().toUpperCase();
+    final var field = SyntaxConstants.class.getDeclaredField(styleName);
+    return (String) field.get(null);
+  } catch (final NoSuchFieldException | IllegalAccessException e) {
+    return RSyntaxTextArea.SYNTAX_STYLE_NONE;
+  }
 }
 ```
 
