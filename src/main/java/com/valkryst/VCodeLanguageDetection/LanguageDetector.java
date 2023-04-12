@@ -170,6 +170,8 @@ public class LanguageDetector {
      * @return The supported languages.
      */
     public String[] getSupportedLanguages() {
-        return keywordsMap.keySet().toArray(new String[0]);
+        return keywordsMap.keySet()
+                .stream().sorted(Comparator.naturalOrder())
+                .toArray(String[]::new);
     }
 }
