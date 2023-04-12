@@ -6,8 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LanguageDetector {
     /** The singleton instance. */
@@ -50,15 +50,16 @@ public class LanguageDetector {
     }
 
     /**
-     * Detects the language of the code.
+     * Detects the probabilities of the code being written in each language. The map is sorted in descending order, so
+     * the first entry is the most likely language.
      *
      * @param code The code to detect the language of.
      *
-     * @return The detected language, or an empty optional if the language could not be detected.
+     * @return A sorted map of languages and their match scores.
      */
-    public Optional<String> detect(String code) {
+    public LinkedHashMap<String, Float> detect(String code) {
         if (code == null || code.isEmpty()) {
-            return Optional.empty();
+            return new LinkedHashMap<>();
         }
 
         code = CodeFilter.filterBraces(code);
@@ -66,20 +67,19 @@ public class LanguageDetector {
         code = CodeFilter.filterSymbols(code);
         code = code.toLowerCase();
 
-        float bestScore = 0;
-        String bestMatch = null;
+        final var scoreMap = new LinkedHashMap<String, Float>();
 
         for (final var language : keywordsMap.keySet()) {
             float score = matchScore(code, keywordsMap.get(language));
-
-            if (score > bestScore) {
-                bestScore = score;
-                bestMatch = language;
-            }
+            scoreMap.put(language, score);
         }
 
-        return Optional.ofNullable(bestMatch);
+        return scoreMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Float>comparingByValue().reversed())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
+
 
     /**
      * Calculates the match score for the code and language.
@@ -162,5 +162,14 @@ public class LanguageDetector {
         }
 
         return instance;
+    }
+
+    /**
+     * Retrieves the supported languages.
+     *
+     * @return The supported languages.
+     */
+    public String[] getSupportedLanguages() {
+        return keywordsMap.keySet().toArray(new String[0]);
     }
 }
