@@ -81,18 +81,19 @@ libraryDependencies += "com.github.Valkryst" % "VCodeLanguageDetection" % "1.0.0
 ## Usage
 
 Get an instance of _LanguageDetector_, and then call the _detectLanguage_ method with the code whose language you wish
-to detect.
+to detect. You can then use `.entrySet().iterator().next()` to retrieve the first entry in the map, which will be the
+most likely language.
 
 ```java
 public class Example {
   public static void main(final String[] args) {
     final var code = """
-            public class Example {
-                public static void main(final String[] args) {
-                    System.out.println("Hello, World!");
-                }
-            }
-            """;
+    public class Example {
+        public static void main(final String[] args) {
+            System.out.println("Hello, World!");
+        }
+    }
+    """;
 
     final var detector = LanguageDetector.getInstance();
     final var language = detector.detect(code);
