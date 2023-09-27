@@ -1,5 +1,5 @@
-[![Java CI with Maven](https://github.com/Valkryst/Valerie/actions/workflows/maven.yml/badge.svg)](https://github.com/Valkryst/Valerie/actions/workflows/maven.yml)
-[![CodeQL](https://github.com/Valkryst/Valerie/actions/workflows/codeql.yml/badge.svg)](https://github.com/Valkryst/Valerie/actions/workflows/codeql.yml)
+[![Java CI with Maven](https://github.com/Valkryst/VCodeLanguageDetection/actions/workflows/maven.yml/badge.svg)](https://github.com/Valkryst/VCodeLanguageDetection/actions/workflows/maven.yml)
+[![CodeQL](https://github.com/Valkryst/VCodeLanguageDetection/actions/workflows/codeql.yml/badge.svg)](https://github.com/Valkryst/VCodeLanguageDetection/actions/workflows/codeql.yml)
 
 This is a lightweight library that allows users to automatically detect the coding language of an
 input text.
