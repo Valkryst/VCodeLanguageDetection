@@ -40,7 +40,7 @@ Add _VCodeLanguageDetection_ as a dependency.
 
 ```
 dependencies {
-	implementation 'com.github.Valkryst:VCodeLanguageDetection:1.0.0'
+	implementation 'com.github.Valkryst:VCodeLanguageDetection:1.0.2'
 }
 ```
 
@@ -63,7 +63,7 @@ Add _VCodeLanguageDetection_ as a dependency.
 <dependency>
     <groupId>com.github.Valkryst</groupId>
     <artifactId>VCodeLanguageDetection</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
@@ -78,7 +78,7 @@ resolvers += "jitpack" at "https://jitpack.io"
 Add _VCodeLanguageDetection_ as a dependency.
 
 ```
-libraryDependencies += "com.github.Valkryst" % "VCodeLanguageDetection" % "1.0.0"
+libraryDependencies += "com.github.Valkryst" % "VCodeLanguageDetection" % "1.0.2"
 ```
 
 ## Usage
